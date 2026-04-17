@@ -22,12 +22,12 @@ public class QuizController {
         this.quizService = quizService;
     }
 
-    @PostMapping("/")
+    @PostMapping({"", "/"})
     public QuizModel create(@RequestBody QuizModel quizModel){
         return quizService.add(quizModel);
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public List<QuizModel> getAll(){
         return quizService.getAll();
     }

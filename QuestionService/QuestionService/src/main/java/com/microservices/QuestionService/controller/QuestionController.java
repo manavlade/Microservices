@@ -22,7 +22,7 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-    @PostMapping("/")
+    @PostMapping({"", "/"})
     public QuestionModel createQuestion(@RequestBody QuestionModel question){
         return questionService.createQuestion(question);
     }
@@ -32,7 +32,7 @@ public class QuestionController {
         return questionService.getQuestionById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping({"", "/"})
     public List<QuestionModel> getAllQuestions(){
         return questionService.getAllQuestions();
     }

@@ -2,9 +2,12 @@ package com.microservices.QuizService.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.microservices.QuizService.models.QuizModel;
 import com.microservices.QuizService.repository.QuizReporsitory;
 
+@Service
 public class QuizService {
 
     private final QuizReporsitory quizReporsitory;
