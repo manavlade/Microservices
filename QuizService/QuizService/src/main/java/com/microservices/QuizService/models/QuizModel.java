@@ -1,5 +1,7 @@
 package com.microservices.QuizService.models;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +15,8 @@ public class QuizModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+
+    transient  private List<QuestionModel> questions;
 
     public Long getId() {
         return id;
@@ -28,5 +32,13 @@ public class QuizModel {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<QuestionModel> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<QuestionModel>  questions){
+        this.questions = questions;
     }
 }

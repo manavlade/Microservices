@@ -12,20 +12,28 @@ public class QuizService {
 
     private final QuizReporsitory quizReporsitory;
 
-    public QuizService(QuizReporsitory quizReporsitory) {
+    private final QuestionClient questionClient;
+
+    public QuizService(QuizReporsitory quizReporsitory, QuestionClient questionClient) {
         this.quizReporsitory = quizReporsitory;
+        this.questionClient = questionClient;
     }
 
-    public QuizModel add(QuizModel quizModel){
+    public QuizModel add(QuizModel quizModel) {
         return quizReporsitory.save(quizModel);
     }
 
-    public List<QuizModel> getAll(){
-        return quizReporsitory.findAll();
+    public List<QuizModel> getAll() {
+        List<QuizModel> quizzes = quizReporsitory.findAll();
+
+        quizzes.forEach(quiz -> quiz.setQuestions(questionClient.getQuestionOfQuiz(quiz.getId())));
+        return quizzes;
     }
 
-    public QuizModel getQuizByID(Long id){
-        return quizReporsitory.findById(id).orElseThrow(() -> new RuntimeException("Quiz with Id not found"));
+    public QuizModel getQuizByID(Long id) {
+        QuizModel quiz = quizReporsitory.findById(id).orElseThrow(() -> new RuntimeException("Quiz with Id not found"));
+        quiz.setQuestions(questionClient.getQuestionOfQuiz(quiz.getId()));
+        return quiz;
     }
 
 }
