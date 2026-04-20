@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.microservices.QuizService.models.QuestionModel;
 
-@FeignClient(url = "http://localhost:9090", value="Question-Client")
+// @FeignClient(url = "http://localhost:9090", value="Question-Client")
+@FeignClient(name="QUESTIONSERVICE")
 public interface QuestionClient {
 
     @GetMapping("/questions/quiz/{quizId}")
